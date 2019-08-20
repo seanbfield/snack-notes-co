@@ -16,7 +16,8 @@ class IdeasController < ApplicationController
 
   # POST /ideas
   def create
-    @idea = Idea.new(idea_params)
+    @idea = Idea.new
+    @idea.user = @current_user
 
     if @idea.save
       render json: @idea, status: :created, location: @idea

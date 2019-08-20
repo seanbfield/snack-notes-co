@@ -24,17 +24,7 @@ class IdeaForm extends React.Component {
       title: this.state.title,
       body: this.state.body
     }
-
-    axios.put(
-      `http://localhost:3000/ideas/${this.props.idea.id}`,
-      {
-        idea: idea
-      })
-      .then(response => {
-        console.log(response)
-        this.props.updateIdea(response.data)
-      })
-      .catch(error => console.log(error))
+    this.props.updateIdea(idea)
   }
 
 

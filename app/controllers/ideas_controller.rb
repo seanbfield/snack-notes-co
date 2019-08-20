@@ -1,12 +1,10 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :update, :destroy]
-  before_action :authorize_request, except: %i[index show]
+  before_action :authorize_request, except: %i[show]
 
   # GET /ideas
   def index
-    @ideas = Idea.all
-
-    render json: @ideas
+    render json: @current_user.ideas
   end
 
   # GET /ideas/1

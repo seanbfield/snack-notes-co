@@ -22,11 +22,18 @@ class IdeasContainer extends React.Component {
 
 
   componentDidMount = async () => {
-    const resp = await allIdeas()
-    console.log(resp);
-    return resp
+    if (this.props.currentUser) {
+      const resp = await allIdeas()
+      this.setState({ ideas: resp })
+    }
   }
 
+  componentDidUpdate = async (prevProps) => {
+    if (prevProps.currentUser !== this.props.currentUser) {
+      const resp = await allIdeas()
+      this.setState({ ideas: resp })
+    }
+  }
 
   addNewIdea = async (e) => {
     e.preventDefault();

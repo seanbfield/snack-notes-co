@@ -122,15 +122,17 @@ class App extends React.Component {
 
         <Switch>
           <Route exact path="/" component={Landing} />
-          <Route exact path="/home" component={Home} />
-
+          <Route exact path="/home" render={() => (
+            <Home
+              currentUser={this.state.currentUser}
+            />
+          )} />
 
           <Route exact path="/login" render={() => (
             <Login
               handleLogin={this.handleLogin}
               handleChange={this.authHandleChange}
               formData={this.state.authFormData} />)} />
-
 
           <Route exact path="/register" render={() => (
             <Register

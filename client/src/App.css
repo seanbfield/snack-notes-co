@@ -1,3 +1,34 @@
+
+@import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
+
+
+
+/* Media Queries
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/*
+Note: The best way to structure the use of media queries is to create the queries
+near the relevant code. For example, if you wanted to change the styles for buttons
+on small devices, paste the mobile query code up in the buttons section and style it
+there.
+*/
+
+
+/* Larger than mobile */
+@media (min-width: 400px) {}
+
+/* Larger than phablet (also point when grid becomes active) */
+@media (min-width: 550px) {}
+
+/* Larger than tablet */
+@media (min-width: 750px) {}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {}
+
+/* Larger than Desktop HD */
+@media (min-width: 1200px) {}
+
+
 .App {
   text-align: left;
 }
@@ -13,9 +44,11 @@
 }
 
 .tile {
-  height: 150px;
-  width: 150px;
+  height: 200pt;
+  width: 200pt;
   margin: 10px;
+  padding: 10px;
+
   background: lightyellow;
   float: left;
   font-size: 11px;
@@ -67,3 +100,9 @@ textarea {
   visibility: visible;
 }
 
+
+.logo-font{
+  font-family: 'Pacifico', cursive;
+  font-size: 40pt;
+  color: white;
+}

@@ -1,12 +1,16 @@
 import React from 'react'
 import axios from 'axios'
 import Idea from './Idea';
+import update from 'immutability-helper'
+import IdeaForm from './IdeaForm'
+
 class IdeasContainer extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      ideas: []
+      ideas: [],
+      editingIdeaId: null
     }
   }
 
@@ -32,28 +36,31 @@ class IdeasContainer extends React.Component {
     )
       .then(response => {
         console.log(response)
-        this.setState({ ideas: response.data })
+        const ideas = update(this.state.ideas, {
+          $splice: [[0, 0, response.data]]
+        })
+        this.setState({ ideas: ideas, editingIdeaId: response.data.id })
       })
       .catch(error => console.log(error))
   }
 
   render() {
     return (
-      <>
+      <div>
         <div>
           <button
             className="newIdeaButton"
             onClick={this.addNewIdea}>New Idea</button>
         </div>
-        <div>
-          {this.state.ideas.map((idea) => {
-            return (
-              <Idea idea={idea} key={idea.id} />
-            )
-          })}
-        </div>
-      </>
-    )
+        {this.state.ideas.map((idea) => {
+          if (this.state.editingIdeaId === idea.id) {
+            return (<IdeaForm idea={idea} key={idea.id} />)
+          } else {
+            return (<Idea idea={idea} key={idea.id} />)
+          }
+        })}
+      </div >
+    );
   }
 }
 

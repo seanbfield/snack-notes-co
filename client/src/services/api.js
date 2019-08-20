@@ -77,3 +77,4 @@ export const newIdea = async (id, data) => {
   const response = await api.get(`/users/${id}/ideas`, { idea: data })
   return response.data
 }
+

@@ -44,6 +44,14 @@ class IdeasContainer extends React.Component {
       .catch(error => console.log(error))
   }
 
+  updateIdea = (idea) => {
+    const ideaIndex = this.state.ideas.findIndex(x => x.id === idea.id)
+    const ideas = update(this.state.ideas, {
+      [ideaIndex]: { $set: idea }
+    })
+    this.setState({ ideas: ideas })
+  }
+
   render() {
     return (
       <div>
@@ -54,7 +62,7 @@ class IdeasContainer extends React.Component {
         </div>
         {this.state.ideas.map((idea) => {
           if (this.state.editingIdeaId === idea.id) {
-            return (<IdeaForm idea={idea} key={idea.id} />)
+            return (<IdeaForm idea={idea} key={idea.id} updateIdea={this.updateIdea} />)
           } else {
             return (<Idea idea={idea} key={idea.id} />)
           }

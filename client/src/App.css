@@ -20,6 +20,9 @@
   float: left;
   font-size: 11px;
   text-align: left;
+  -webkit-box-shadow: -2px 7px 52px -24px rgba(0,0,0,0.75);
+-moz-box-shadow: -2px 7px 52px -24px rgba(0,0,0,0.75);
+box-shadow: -2px 7px 52px -24px rgba(0,0,0,0.75);
 }
 
 
@@ -34,3 +37,20 @@
   padding:10px;
 }
 
+.landing-view {
+  text-align: center;
+  background-color: #20bf6b;
+  height: 100vh;
+}
+
+.landing-header {
+  text-align: center;
+  background-color: #20bf6b;
+  height: 150px;
+  padding: 20px;
+}
+
+.landing-text{
+  font-size: 30pt;
+  color: white;
+}

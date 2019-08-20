@@ -6,8 +6,7 @@ class Idea extends Component {
     this.props.enableEditing(this.props.idea.id)
   }
 
-  handleDelete = (e) => {
-    e.stopPropagation()
+  handleDelete = () => {
     this.props.deleteIdea(this.props.idea.id)
   }
 
@@ -16,7 +15,10 @@ class Idea extends Component {
       <div className="tile" onClick={this.handleClick}>
         <span
           className="deleteButton"
-          onClick={this.handleDelete}>
+          onClick={(e) => {
+            e.stopPropagation()
+            this.handleDelete(this.props.idea.id)
+          }}>
           x
           </span>
 

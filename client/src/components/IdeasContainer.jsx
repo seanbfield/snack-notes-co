@@ -52,11 +52,10 @@ class IdeasContainer extends React.Component {
 
 
 
-  deleteIdea = async () => {
-    const recycle = await trashIdea();
-
+  deleteIdea = async (id) => {
+    await trashIdea(id);
     this.setState(prevState => ({
-      ideas: prevState.ideas.filter(ideas.id !== id)
+      ideas: prevState.ideas.filter(idea => idea.id !== id)
     }));
   }
 

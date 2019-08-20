@@ -7,19 +7,21 @@ import { Link } from 'react-router-dom';
 const Login = (props) => {
 
   return (
-    <div className="auth-container">
-      <h2>login</h2>
-      <hr />
-      <form onSubmit={(e) => {
-        e.preventDefault();
-        props.handleLogin();
-      }} >
+
+    <div className="text-center">
+      <div className="landing-text">login</div>
+      <form
+        className="form-signin"
+        onSubmit={(e) => {
+          e.preventDefault();
+          props.handleLogin();
+        }} >
+        {/* <img className="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72" /> */}
         <p>Username:</p>
-        <input name="username" type="text" value={props.formData.username} onChange={props.handleChange} />
+        <input className="form-control" name="username" type="text" value={props.formData.username} onChange={props.handleChange} />
         <p>Password:</p>
-        <input name="password" type="password" value={props.formData.password} onChange={props.handleChange} />
-        <hr />
-        <button>Login</button>
+        <input className="form-control" name="password" type="password" value={props.formData.password} onChange={props.handleChange} />
+        <button className="btn btn-lg btn-primary btn-block">Login</button>
         <Link to="/register">Register</Link>
       </form>
     </div>

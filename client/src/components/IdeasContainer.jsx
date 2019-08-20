@@ -3,9 +3,14 @@ import axios from 'axios'
 import Idea from './Idea';
 import update from 'immutability-helper'
 import IdeaForm from './IdeaForm'
+import {
+  allIdeas,
+  newIdea,
+  trashIdea,
+  updateIdea
+} from '../services/api';
 
 class IdeasContainer extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = {
@@ -16,59 +21,43 @@ class IdeasContainer extends React.Component {
   }
 
 
-  componentDidMount() {
-    axios.get('http://localhost:3000/ideas')
-      .then(response => {
-        console.log(response)
-        this.setState({ ideas: response.data })
-      })
-      .catch(error => console.log(error))
-  }
-
-  addNewIdea = () => {
-    axios.post('http://localhost:3000/ideas',
-      {
-        idea:
-        {
-          title: '',
-          body: ''
-        }
-      }
-    )
-      .then(response => {
-        console.log(response)
-        const ideas = update(this.state.ideas, {
-          $splice: [[0, 0, response.data]]
-        })
-        this.setState({ ideas: ideas, editingIdeaId: response.data.id })
-      })
-      .catch(error => console.log(error))
-  }
-
-  updateIdea = (idea) => {
-    const ideaIndex = this.state.ideas.findIndex(x => x.id === idea.id)
-    const ideas = update(this.state.ideas, {
-      [ideaIndex]: {
-        $set: idea
-      }
-    })
-    this.setState({
-      ideas: ideas,
-      notification: 'All changes saved'
-    })
+  componentDidMount = async () => {
+    const resp = await allIdeas()
+    console.log(resp);
+    return resp
   }
 
 
-  deleteIdea = (id) => {
-    axios.delete(`http://localhost:3000/ideas/${id}`)
-      .then(response => {
-        const ideaIndex = this.state.ideas.findIndex(x => x.id === id)
-        const ideas = update(this.state.ideas, { $splice: [[ideaIndex, 1]] })
-        this.setState({ ideas: ideas })
-      })
-      .catch(error => console.log(error))
+  addNewIdea = async (e) => {
+    e.preventDefault();
+    const idea = await newIdea();
+    console.log(idea);
+    this.setState(prevState => ({
+      ideas: [...prevState.ideas, idea],
+      editingIdeaId: idea.id
+    }))
   }
 
+
+  updateIdea = async (idea) => {
+    // const ideaIndex = this.state.ideas.findIndex(x => x.id === idea.id)
+    const updatedIdea = await updateIdea(this.state.editingIdeaId, idea)
+    this.setState(prevState => ({
+      ideas: prevState.ideas.map(currentIdea => currentIdea.id === updatedIdea.id ? updatedIdea : currentIdea)
+    }))
+  }
+
+
+  // prevstate.ideas.filter & filter out one with a matching id
+
+
+
+  deleteIdea = async (id) => {
+    await trashIdea(id);
+    this.setState(prevState => ({
+      ideas: prevState.ideas.filter(idea => idea.id !== id)
+    }));
+  }
 
 
   resetNotification = () => {
@@ -78,7 +67,6 @@ class IdeasContainer extends React.Component {
       }
     )
   }
-
   enableEditing = (id) => {
     this.setState({ editingIdeaId: id }, () => { this.title.focus() })
   }
@@ -100,27 +88,28 @@ class IdeasContainer extends React.Component {
             }
           </span>
         </div>
-        {this.state.ideas.map((idea) => {
-          if (this.state.editingIdeaId === idea.id) {
-            return (
-
-              <IdeaForm
-                idea={idea}
-                key={idea.id}
-                updateIdea={this.updateIdea}
-                titleRef={input => this.title = input}
-                resetNotification={this.resetNotification}
-              />
-            )
-          } else {
-            return (
-              <Idea idea={idea}
-                key={idea.id}
-                onClick={this.enableEditing}
-                onDelete={this.deleteIdea}
-              />)
-          }
-        })}
+        {
+          this.state.ideas.map((idea) => {
+            if (this.state.editingIdeaId === idea.id) {
+              return (
+                <IdeaForm
+                  idea={idea}
+                  key={idea.id}
+                  updateIdea={this.updateIdea}
+                  titleRef={input => this.title = input}
+                  resetNotification={this.resetNotification}
+                />
+              )
+            } else {
+              return (
+                <Idea idea={idea}
+                  key={idea.id}
+                  enableEditing={this.enableEditing}
+                  deleteIdea={this.deleteIdea}
+                />)
+            }
+          })
+        }
       </div >
     );
   }

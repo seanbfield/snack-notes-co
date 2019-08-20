@@ -58,6 +58,19 @@ class IdeasContainer extends React.Component {
     })
   }
 
+
+  deleteIdea = (id) => {
+    axios.delete(`http://localhost:3000/ideas/${id}`)
+      .then(response => {
+        const ideaIndex = this.state.ideas.findIndex(x => x.id === id)
+        const ideas = update(this.state.ideas, { $splice: [[ideaIndex, 1]] })
+        this.setState({ ideas: ideas })
+      })
+      .catch(error => console.log(error))
+  }
+
+
+
   resetNotification = () => {
     this.setState(
       {
@@ -69,6 +82,8 @@ class IdeasContainer extends React.Component {
   enableEditing = (id) => {
     this.setState({ editingIdeaId: id }, () => { this.title.focus() })
   }
+
+
 
   render() {
     return (
@@ -87,13 +102,23 @@ class IdeasContainer extends React.Component {
         </div>
         {this.state.ideas.map((idea) => {
           if (this.state.editingIdeaId === idea.id) {
-            return (<IdeaForm idea={idea}
-              key={idea.id}
-              updateIdea={this.updateIdea}
-              titleRef={input => this.title = input}
-              resetNotification={this.resetNotification} />)
+            return (
+
+              <IdeaForm
+                idea={idea}
+                key={idea.id}
+                updateIdea={this.updateIdea}
+                titleRef={input => this.title = input}
+                resetNotification={this.resetNotification}
+              />
+            )
           } else {
-            return (<Idea idea={idea} key={idea.id} onClick={this.enableEditing} />)
+            return (
+              <Idea idea={idea}
+                key={idea.id}
+                onClick={this.enableEditing}
+                onDelete={this.deleteIdea}
+              />)
           }
         })}
       </div >

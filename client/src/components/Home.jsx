@@ -3,7 +3,7 @@ import IdeasContainer from './IdeasContainer.jsx'
 
 export default function Home(props) {
   return (
-    <div>
+    <div className="landing-view">
       <IdeasContainer
         currentUser={props.currentUser}
       />

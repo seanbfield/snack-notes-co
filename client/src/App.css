@@ -1,25 +1,48 @@
 @import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One|Pacifico&display=swap');
 
-
+p {
+  color: black;
+}
 .App {
-  text-align: left;
+  text-align: center;
 }
 
 .App-header {
-  text-align: center;
-  height: 150px;
-  padding: 20px;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  background: url('./assets/cover.svg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .App-intro {
   font-size: large;
 }
 
+.header {
+  display: flex;
+  height: 100px;
+  background-color: white;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 5%;
+}
+
+
 .tile {
-  height: 150px;
-  width: 150px;
+  height: 250px;
+  width: 250px;
   margin: 10px;
-  background: lightyellow;
+  padding: 20px;
+  background:#f1c40f;
   float: left;
   font-size: 11px;
   text-align: left;
@@ -55,10 +78,132 @@
 
 .landing-text{
   font-size: 30pt;
-  color: white;
+  color: black;
   font-family: 'Alfa Slab One', cursive;
 }
 
 .landing-view p{
-  color:white
+  color: black
+}
+
+
+.list-card {
+  background-image: linear-gradient(to right top, #ff9671, #fd7e68, #f96364, #f34463, #eb1267);
+  border-radius: 10px;
+  box-shadow: 0px 0px 2px #f1f2f6;
+  width: 400px;
+  height: 250px;
+  align-items: center;
+  transition: all ease 0.3s;
+  cursor: pointer;
+  color: #fff;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 30px;
+  justify-content: center;
+}
+
+.edit-text{
+  display: flex; 
+  justify-content: flex-end;
+  margin-top: 18px;
+  margin-left: 14px;
+  margin-right: 14px;
+  font-size: 20px;
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
+}
+
+
+.list-card:hover{
+  box-shadow: 0 8px 6px -6px  #060403;
+  transform: scale(1.0); 
+}
+.list-card h2 {
+  grid-area: h2;
+  text-align: center;
+  margin: 0;
+  padding: 1rem;
+  color: #fff;
+}
+.list-card h4 {
+  grid-area: h4;
+  text-align: center;
+  margin: 0;
+  padding: 1rem;
+  color: #fff;
+}
+.list-card h6 {
+  grid-area: h6;
+  text-align: center;
+  margin: 0;
+  padding: 1rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.list-card .title {
+  grid-area: title;
+  text-align: center;
+  margin-top: 20px;
+  padding: 0.25rem 1rem;
+}
+.list-card .desc {
+  grid-area: desc;
+  padding: 0.5rem 1rem;
+  transition: all ease 1s;
+}
+.list-card:hover {
+  box-shadow: 8px 8px 15px rgba(42,39,70,0.5);
+  transform: scale(1.05); 
+}
+.list-card .actions {
+  grid-area: actions;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-around;
+}
+.list-card a{
+  color: #fff;
+  font-size: 30px;
+  font-weight: 300;
+}
+.list-card svg {
+  grid-area: svg;
+  /* width: 150px;
+  height: 150px; */
+  margin: 0 auto;
+  border: 3px solid #ccc;
+  border-radius: 50%;
+  background-color: #f8f8f8;
+}
+
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }

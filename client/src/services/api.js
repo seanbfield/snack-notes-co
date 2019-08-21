@@ -67,8 +67,8 @@ export const destroyUsers = async (id) => {
 
 //GET    /users/:user_id/ideas
 export const allIdeas = async () => {
-  const resp = await api.get(`/ideas`)
-  return resp
+  const resp = await api(`/ideas`)
+  return resp.data
 }
 
 

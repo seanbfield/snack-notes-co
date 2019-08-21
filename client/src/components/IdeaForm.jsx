@@ -30,7 +30,7 @@ class IdeaForm extends React.Component {
 
   render() {
     return (
-      <div className="list-card">
+      <div className="tile">
         <form onBlur={this.handleBlur}>
           <input className='input' type="text"
             name="title"

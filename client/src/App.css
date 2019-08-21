@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One|Pacifico&display=swap');
 
-
+p {
+  color: black;
+}
 .App {
   text-align: center;
 }

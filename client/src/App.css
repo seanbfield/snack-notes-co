@@ -1,15 +1,32 @@
 @import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One|Pacifico&display=swap');
 
+body{
+  background-color: #174C98;
+}
+
 p {
   color: black;
 }
+
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+a {
+  color: white;
+}
+
+a:link{
+  color: white;
+}
 .App {
   text-align: center;
+  background-color: #174C98;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #174C98;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,22 +43,24 @@ p {
 .App-intro {
   font-size: large;
 }
-
 .header {
   display: flex;
-  height: 100px;
-  background-color: white;
+  margin-top: 12px;
+  height: 60px;
+  background-color: #174C98;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 0 5%;
 }
-
 
 .tile {
   height: 250px;
   width: 250px;
-  margin: 10px;
-  padding: 20px;
+  margin-top: 30px;
+  margin-left: 4%;
+  margin-right: 2px;
+  padding-top: 20px;
+  padding-left: 20px;
   background:#f1c40f;
   float: left;
   font-size: 11px;
@@ -64,9 +83,12 @@ p {
 }
 
 .landing-view {
+  padding-top:14px;
   text-align: center;
-  background-color: #2D2D33;
-  height: 100vh;
+  background-color: #174C98;;
+  min-height: 100vh;
+  height:inherit;
+  margin: auto;
 }
 
 .landing-header {
@@ -115,4 +137,33 @@ p {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.some-page-wrapper {
+  margin-top:12px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+.blue-column {
+  height: 100px;
+
+}
+
+.green-column {
+
+  height: 100px;
+
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import IdeasContainer from './IdeasContainer.jsx'
+import IdeasContainer from '../components/IdeasContainer.jsx'
 
 export default function Home(props) {
   return (

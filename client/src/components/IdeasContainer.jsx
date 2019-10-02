@@ -10,6 +10,8 @@ import {
   updateIdea
 } from '../services/api';
 
+import snl from '../assets/logo.png'
+
 class IdeasContainer extends React.Component {
   constructor(props) {
     super(props)
@@ -77,13 +79,11 @@ class IdeasContainer extends React.Component {
   enableEditing = (id) => {
     this.setState({ editingIdeaId: id }, () => { this.title.focus() })
   }
-
-
-
   render() {
     return (
       <div>
-        <div>
+        <div class="header">
+          <img src={snl} alt="logo" />
           <button
             className="newIdeaButton"
             onClick={this.addNewIdea}>New Idea</button>

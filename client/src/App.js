@@ -3,7 +3,8 @@ import React from 'react'
 // Modules
 import {
   Switch,
-  Route
+  Route,
+  withRouter
 } from 'react-router-dom';
 
 // API
@@ -12,7 +13,6 @@ import {
   loginUser,
   registerUser,
   verifyUser
-
 } from './services/api'
 
 // Stylesheet
@@ -22,10 +22,12 @@ import './App.css'
 //  ========================== //
 //           Components        //
 //  ========================== //
-import Home from './components/Home';
-import Login from './components/Login';
-import Register from './components/Register';
-import Landing from './components/Landing';
+
+
+import Home from './views/Home';
+import Login from './views/Login';
+import Register from './views/Register';
+import Landing from './views/Landing';
 
 
 
@@ -33,7 +35,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: null,
+      currentUser: [],
       authFormData: {
         username: "",
         email: "",
@@ -83,6 +85,7 @@ class App extends React.Component {
     this.setState({
       currentUser: userData
     })
+    this.props.history.push("/home")
   }
 
   handleRegister = async (e) => {
@@ -146,4 +149,5 @@ class App extends React.Component {
   }
 }
 
-export default App
+
+export default withRouter(App);
